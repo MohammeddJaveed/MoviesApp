@@ -112,7 +112,7 @@ export default function HomeScreen() {
         
       <View style={styles.container}>
       {/* Avatar */}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
       <View style={styles.avatarContainer}>
         <Image
           source={require("../../assets/images/avatar.png")}
