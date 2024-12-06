@@ -16,6 +16,7 @@ import UpcomingMovie from '../component/UpcomingMovie';
 
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${movieApiKey}`;
   const topRatedMoviesUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${movieApiKey}`;
   const popularMoviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${movieApiKey}`;

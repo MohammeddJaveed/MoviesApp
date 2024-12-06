@@ -11,6 +11,23 @@ const topRatedMoviesEndpoint = `${apiBaseUrl}/movie/top_rated?api_key=${movieApi
 const genresEndpoint = `${apiBaseUrl}/genre/movie/list?api_key=${movieApiKey}`;
 const searchMoviesEndpoint = `${apiBaseUrl}/search/movie?api_key=${movieApiKey}`;
 
+// Movie Details Endpoint
+const movieDetailsEndpoint = (id) =>
+  `${apiBaseUrl}/movie/${id}?api_key=${movieApiKey}`;
+
+const movieCreditsEndpoint = (id) =>
+  `${apiBaseUrl}/movie/${id}/credits?api_key=${movieApiKey}`;
+
+const similarMoviesEndpoint = (id) =>
+  `${apiBaseUrl}/movie/${id}/similar?api_key=${movieApiKey}`;
+
+// Cast Api call to get  cast of movie
+const personDetailsEndpoint = (id) =>
+  `${apiBaseUrl}/person/${id}?api_key=${movieApiKey}`;
+
+const personMovieEndpoint = (id) =>
+  `${apiBaseUrl}/person/${id}/movie_credits?api_key=${movieApiKey}`;
+
 const movieApiCall = async (endpoints, params) => {
   const options = {
     method: "GET",
@@ -66,4 +83,14 @@ export const fetchSimilarMovies = (movieId) => {
 
 export const searchMovies = (params) => {
   return movieApiCall(searchMoviesEndpoint, params);
+};
+
+
+
+export const fetchPersonDetails = (id) => {
+  return movieApiCall(personDetailsEndpoint(id));
+};
+
+export const fetchPersonMovies = (id) => {
+  return movieApiCall(personMovieEndpoint(id));
 };
