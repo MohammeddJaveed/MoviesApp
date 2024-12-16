@@ -9,6 +9,7 @@ import {
   Dimensions,
   Alert,
   SafeAreaView,
+  Share
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { image500 } from "../../utils/moviesApi";
@@ -93,6 +94,26 @@ export default function ProfileScreen() {
     }
   };
 
+
+  const handleShare = async () => {
+    try {
+      const result = await Share.share({
+        message: `Hey! Check out this amazing app. Use my referral link to sign up and get 2 months of free subscription! \n\n Referral Link: https://yourapp.com/signup?referralCode=123456`,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log("Shared with activity type:", result.activityType);
+        } else {
+          console.log("Shared successfully!");
+        }
+      } else if (result.action === Share.dismissedAction) {
+        console.log("Share dismissed");
+      }
+    } catch (error) {
+      console.error("Failed to share referral link:", error.message);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <SafeAreaView style={styles.header}>
@@ -142,6 +163,17 @@ export default function ProfileScreen() {
         ) : (
           <Text style={styles.noMoviesText}>No saved movies yet.</Text>
         )}
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Refer & Earn</Text>
+        <Text style={styles.referText}>
+          Invite your friends to try the app and earn 2 months of free
+          subscription for every successful referral!
+        </Text>
+        <TouchableOpacity onPress={handleShare} style={styles.shareButton}>
+          <Text style={styles.shareButtonText}>Refer Now</Text>
+        </TouchableOpacity>
       </View>
 
       <TouchableOpacity
@@ -226,10 +258,28 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 5,
-    marginTop: 20,
+    width:'100%'
   },
   logoutButtonText: {
     color: "white",
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  shareButton: {
+    backgroundColor: "#1E40AF",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  shareButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  referText: {
+    color: "gray",
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 10,
   },
 });
