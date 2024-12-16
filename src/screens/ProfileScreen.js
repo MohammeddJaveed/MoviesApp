@@ -102,7 +102,7 @@ export default function ProfileScreen() {
               profileImage
                 ? { uri: profileImage }
                 : {
-                    uri: "https://www.w3schools.com/w3images/avatar2.png",
+                    uri: "https://www.w3schools.com/w3images/avatar2.png", 
                   }
             }
             style={styles.profileImage}
