@@ -15,6 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { image500 } from "../../utils/moviesApi";
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
+import * as Localization from 'expo-localization'; 
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,8 +23,8 @@ export default function ProfileScreen() {
   const navigation = useNavigation();
   const [savedMovies, setSavedMovies] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
+  const [region, setRegion] = useState(null); 
 
-  // Load saved movies and profile image from AsyncStorage
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -35,6 +36,10 @@ export default function ProfileScreen() {
         if (storedImage) {
           setProfileImage(storedImage);
         }
+
+      
+        const userRegion = Localization.region;
+        setRegion(userRegion); 
       } catch (error) {
         console.error("Failed to load data:", error);
       }
@@ -43,7 +48,7 @@ export default function ProfileScreen() {
   }, []);
 
   const handleImagePicker = async () => {
-    // Request permissions for camera and gallery
+  
     const { status: cameraStatus } =
       await ImagePicker.requestCameraPermissionsAsync();
     const { status: galleryStatus } =
@@ -78,7 +83,7 @@ export default function ProfileScreen() {
               if (!result.canceled) {
                 const imageUri = result.assets[0].uri;
                 setProfileImage(imageUri);
-                await AsyncStorage.setItem("profileImage", imageUri); // Store image URI
+                await AsyncStorage.setItem("profileImage", imageUri); 
               }
             },
           },
@@ -93,7 +98,6 @@ export default function ProfileScreen() {
       );
     }
   };
-
 
   const handleShare = async () => {
     try {
@@ -135,6 +139,17 @@ export default function ProfileScreen() {
           <Text style={styles.editButtonText}>Edit Profile</Text>
         </TouchableOpacity>
       </SafeAreaView>
+
+      <View style={styles.regionSection}>
+        <Text style={styles.sectionTitle}>Region Check</Text>
+        {region ? (
+          <Text style={styles.regionText}>
+            You are currently in {region}.
+          </Text>
+        ) : (
+          <Text style={styles.regionText}>Unable to detect your region.</Text>
+        )}
+      </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Saved Movies</Text>
@@ -223,6 +238,16 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+  regionSection: {
+    width: "100%",
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  regionText: {
+    color: "gray",
+    fontSize: 16,
+    textAlign: "center",
+  },
   section: {
     width: "100%",
     marginBottom: 20,
@@ -250,36 +275,34 @@ const styles = StyleSheet.create({
   },
   noMoviesText: {
     color: "gray",
+    textAlign: "center",
     fontSize: 16,
-    textAlign: "center",
   },
-  logoutButton: {
-    backgroundColor: "#E11D48",
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-    width:'100%'
-  },
-  logoutButtonText: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+  referText: {
+    color: "gray",
+    fontSize: 16,
+    marginBottom: 10,
   },
   shareButton: {
     backgroundColor: "#1E40AF",
-    paddingVertical: 10,
+    paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius: 5,
+    alignItems: "center",
   },
   shareButtonText: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center",
   },
-  referText: {
-    color: "gray",
-    fontSize: 14,
-    textAlign: "center",
-    marginBottom: 10,
+  logoutButton: {
+    backgroundColor: "#D32F2F",
+    paddingVertical: 10,
+    width: "100%",
+    alignItems: "center",
+    borderRadius: 5,
+  },
+  logoutButtonText: {
+    color: "white",
+    fontWeight: "bold",
   },
 });

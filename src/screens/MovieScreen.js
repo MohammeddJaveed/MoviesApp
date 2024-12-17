@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Vibration
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
@@ -87,11 +88,11 @@ export default function MovieScreen() {
     try {
       const savedMovies = await AsyncStorage.getItem("savedMovies");
       let savedMoviesArray = savedMovies ? JSON.parse(savedMovies) : [];
-
+  
       const isMovieSaved = savedMoviesArray.some(
         (savedMovie) => savedMovie.id === item.id
       );
-
+  
       if (!isMovieSaved) {
         savedMoviesArray.push(movie);
         await AsyncStorage.setItem(
@@ -99,6 +100,7 @@ export default function MovieScreen() {
           JSON.stringify(savedMoviesArray)
         );
         toggleFavourite(true);
+        Vibration.vibrate(100); // Vibrate for 100ms when saved
       } else {
         const updatedSavedMoviesArray = savedMoviesArray.filter(
           (savedMovie) => savedMovie.id !== item.id
@@ -108,11 +110,13 @@ export default function MovieScreen() {
           JSON.stringify(updatedSavedMoviesArray)
         );
         toggleFavourite(false);
+        Vibration.vibrate(50); // Vibrate for 50ms when removed
       }
     } catch (error) {
       console.log("Error Saving Movie", error);
     }
   };
+  
 
   useEffect(() => {
     const loadSavedMovies = async () => {

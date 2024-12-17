@@ -3,7 +3,7 @@
     "name": "Movies",
     "slug": "Movies",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": " portrait ",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -18,16 +18,19 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
-      
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to detect your region."
+      }
     },
     "android": {
       "adaptiveIcon": {
