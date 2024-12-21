@@ -133,8 +133,8 @@ export default function ProfileScreen() {
             style={styles.profileImage}
           />
         </TouchableOpacity>
-        <Text style={styles.userName}>John Doe</Text>
-        <Text style={styles.userEmail}>johndoe@gmail.com</Text>
+        <Text style={styles.userName}>Mohammed Javeed</Text>
+        <Text style={styles.userEmail}>javeed@gmail.com</Text>
         <TouchableOpacity onPress={() => console.log("Edit Profile")} style={styles.editButton}>
           <Text style={styles.editButtonText}>Edit Profile</Text>
         </TouchableOpacity>

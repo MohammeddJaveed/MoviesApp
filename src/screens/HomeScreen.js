@@ -29,10 +29,9 @@ export default function HomeScreen() {
   const popularMoviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${movieApiKey}`;
   const upcomingMoviesUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${movieApiKey}`;
 
-  // State for profile image
+ 
   const [profileImage, setProfileImage] = useState(null);
 
-  // Fetch profile image from AsyncStorage
   useEffect(() => {
     const loadProfileImage = async () => {
       try {
@@ -48,7 +47,7 @@ export default function HomeScreen() {
     loadProfileImage();
   }, []);
 
-  // State management for movies
+  
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isTrendingLoading, setTrendingLoading] = useState(false);
   const [trendingError, setTrendingError] = useState("");
@@ -65,7 +64,6 @@ export default function HomeScreen() {
   const [isUpcomingLoading, setUpcomingLoading] = useState(false);
   const [upcomingError, setUpcomingError] = useState("");
 
-  // Function to fetch movies
   const fetchMovies = async (url, setData, setLoading, setError, errorMessage) => {
     setLoading(true);
     try {

@@ -41,7 +41,6 @@ export default function MovieScreen() {
     getSimilarMovies(item.id);
   }, [item]);
 
-  // Function to Fetch Movie Details
   const getMovieDetails = async (id) => {
     const data = await fetchMovieDetails(id);
     setLoading(false);
@@ -83,7 +82,6 @@ export default function MovieScreen() {
     }
   };
 
-  // Function to Add/Remove Movie from Favorites
   const toggleFavouriteAndSave = async () => {
     try {
       const savedMovies = await AsyncStorage.getItem("savedMovies");
@@ -158,7 +156,6 @@ export default function MovieScreen() {
         style={styles.movieImage}
       />
 
-      {/* Movie Details */}
       <View style={styles.detailsContainer}>
         <Image
           source={require("../../assets/images/homescreen1.png")}
