@@ -51,3 +51,39 @@ Movie Tonight is a dynamic React Native Expo application designed to provide a s
 
 1. Clone the repository:
    git clone https://github.com/MohammeddJaveed/MoviesApp.git
+2. Install dependencies: npm i
+3. Start expo: npm expo start
+
+## Usage
+
+**Run the App** 
+Launch the app on your emulator or physical device using the Expo Go app.
+
+**Explore Features**
+- Browse movies on the Home Screen.
+- Search for movies on the Search Screen.
+- Save your favourite movies and view them on the Saved Movies Screen.
+- Update your profile picture and view your region on the Profile Screen.
+- Share the app with friends through the Refer Now feature.
+
+## API Integration
+
+- The app integrates with the TMDB API to fetch real-time movie data, including details and cast information.
+- Axios is used for making efficient API requests.
+
+## Key Packages
+
+- react-native-snap-carousel: For a smooth movie carousel experience.
+- react-native-share: To enable seamless sharing functionality.
+- expo-contacts: To access the user’s contacts for referrals.
+- React Native Async Storage: For persistent local storage of user data.
+- expo-localization: To fetch and display the user’s region dynamically.
+- @react-navigation/bottom-tabs: For intuitive tab-based navigation.
+
+## Future Enhancements
+- SSO Integration
+- Push notification 
+
+## Credits
+- TMDB API: For providing movie data.
+- Open-source community and libraries for powering the application.
