@@ -135,9 +135,9 @@ export default function ProfileScreen() {
         </TouchableOpacity>
         <Text style={styles.userName}>Mohammed Javeed</Text>
         <Text style={styles.userEmail}>javeed@gmail.com</Text>
-        <TouchableOpacity onPress={() => console.log("Edit Profile")} style={styles.editButton}>
+        {/* <TouchableOpacity onPress={() => console.log("Edit Profile")} style={styles.editButton}>
           <Text style={styles.editButtonText}>Edit Profile</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </SafeAreaView>
 
       <View style={styles.regionSection}>

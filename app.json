@@ -3,7 +3,7 @@
     "name": "Movies",
     "slug": "Movies",
     "version": "1.0.0",
-    "orientation": " portrait ",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -24,7 +24,8 @@
     "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#000000",
+      "duration": 2000
     },
     "ios": {
       "supportsTablet": true,
@@ -36,10 +37,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.mohammedjaveed.Movies"
     },
     "web": {
       "favicon": "./assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b19191ce-30d6-4941-b523-087e1f243d5a"
+      }
     }
   }
 }
